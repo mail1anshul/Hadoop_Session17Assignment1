@@ -1,0 +1,23 @@
+===========================================================================================
+1. Write a program to read a text file and print the number of rows of data in the document:
+===========================================================================================
+
+val file = sc.textFile("/home/acadgild/Desktop/assignments/session17/assignment1/file.txt")
+file.count()
+
+====================================================================================
+2. Write a program to read a text file and print the number of words in the document:
+====================================================================================
+
+val file = sc.textFile("/home/acadgild/Desktop/assignments/session17/assignment1/file.txt")
+val wordcount = file.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
+wordcount.collect
+
+==========================================================================================
+3. We have a document where the word separator is -, instead of space. Write a spark code,
+ to obtain the count of the total number of words present in the document:
+==========================================================================================
+
+val file = sc.textFile("/home/acadgild/Desktop/assignments/session17/assignment1/file.txt")
+val wordcount = file.flatMap(line => line.split("-")).map(word => (word,1)).reduceByKey(_+_)
+wordcount.count()
